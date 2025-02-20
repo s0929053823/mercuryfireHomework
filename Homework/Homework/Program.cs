@@ -1,3 +1,4 @@
+using CoindeskHomework.Controllers.Filters;
 using Homework.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MercuryfireHomeworkContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiExceptionFilter>();
+});
 
 var app = builder.Build();
 
