@@ -23,8 +23,12 @@ namespace CoindeskHomework.Controllers.Filters
             var exception = context.Exception;
             var request = context.HttpContext.Request;
 
+
+            var controllerName = context.ActionDescriptor.RouteValues["controller"];
+            var actionName = context.ActionDescriptor.RouteValues["action"];
+            var httpMethod = context.HttpContext.Request.Method;
             OutputParameter<string> rtnValue = null;
-            _sp.usp_AddLogAsync(0,"sp_name",new Guid(),"program","action", rtnValue).GetAwaiter().GetResult();
+            _sp.usp_AddLogAsync(0,"sp_name",new Guid(), controllerName, actionName, rtnValue).GetAwaiter().GetResult();
      
 
             var errorResponse = new

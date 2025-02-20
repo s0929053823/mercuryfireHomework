@@ -80,7 +80,7 @@ namespace Homework.Controllers
                 AcpdMemo = user.AcpdMemo,
                 AcpdNowDateTime = DateTime.Now
             };
-
+            throw new Exception("新增");
             var output = new OutputParameter<string>();
             await _sp.NEWSIDAsync(nameof(MyOfficeAcpd), output);
             newUser.AcpdSid = output.Value;
