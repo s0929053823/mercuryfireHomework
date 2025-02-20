@@ -1,4 +1,5 @@
 ﻿
+using Homework.Common;
 using Homework.DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -36,6 +37,17 @@ namespace CoindeskHomework.Controllers.Filters
             {
                 StatusCode = StatusCodes.Status500InternalServerError
             };
+
+
+            if (context.Exception is NotFoundException notFoundException)
+            {
+                context.Result = new ObjectResult(new { message = notFoundException.Message })
+                {
+                    StatusCode = StatusCodes.Status404NotFound
+                };
+                context.ExceptionHandled = true;
+                return;
+            }
 
 
             context.ExceptionHandled = true;
